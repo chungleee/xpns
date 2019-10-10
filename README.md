@@ -1,3 +1,3 @@
-# X P N S E app
+# X P N S E
 
-## Expense / Money tracker
+Expense / Money tracker
