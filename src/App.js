@@ -1,13 +1,19 @@
 import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Landing from './components/containers/Landing'
+import SignupForm from './components/containers/SignupForm'
 
 function App() {
   return (
-    <div>
-      <header>
-        <h1>X P N S</h1>
-        <h2>Track where your money goes</h2>
-      </header>
-    </div>
+    <Router>
+      <Route exact path="/">
+        <Landing />
+      </Route>
+
+      <Route path="/signup">
+        <SignupForm />
+      </Route>
+    </Router>
   )
 }
 
