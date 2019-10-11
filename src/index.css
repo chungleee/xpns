@@ -1,0 +1,5 @@
+@import '../node_modules/tachyons/css/tachyons.min.css';
+
+body {
+  font-family: 'avenir next', avenir, sans-serif;
+}
