@@ -1,7 +1,12 @@
 import React from 'react'
+import Balance from './components/Balance'
 
 const App = () => {
-  return <div>welcome to your xpns app</div>
+  return (
+    <div>
+      <Balance />
+    </div>
+  )
 }
 
 export default App
