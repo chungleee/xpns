@@ -1,5 +1,13 @@
 @import '../node_modules/tachyons/css/tachyons.min.css';
 
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  height: 100vh;
   font-family: 'avenir next', avenir, sans-serif;
 }
