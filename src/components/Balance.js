@@ -5,7 +5,7 @@ const Balance = () => {
     <div className="h5 flex justify-center items-center" style={style.gradient}>
       <div className="tc">
         <p className="f7 ttu">current balance</p>
-        <p className="f1">$500</p>
+        <p className="f1 mt2 mb2">$500</p>
         <p className="f7">October 2019</p>
       </div>
     </div>
