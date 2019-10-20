@@ -1,18 +1,19 @@
 import React from 'react'
-import Balance from './components/Balance'
-import ListGrid from './components/ListGrid'
-import ExpenseList from './components/ExpenseList'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+import AddExpense from './components/containers/AddExpense'
+import ChartExpense from './components/containers/ChartExpense'
 import Footer from './components/Footer'
+import Home from './components/containers/Home'
 
 const App = () => {
   return (
-    <div>
-      <Balance />
-      <ListGrid>
-        <ExpenseList />
-      </ListGrid>
+    <Router>
       <Footer />
-    </div>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/addexpense" component={AddExpense} />
+      <Route exact path="/chart" component={ChartExpense} />
+    </Router>
   )
 }
 
