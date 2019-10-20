@@ -11,7 +11,7 @@ const Footer = () => {
         <i className="fas fa-home f3"></i>
       </Link>
       <Link to="/addexpense" className="link black dim pl3 pr3">
-        <i className="fas fa-plus f3"></i>
+        <i className="fas fa-plus f3" style={{ color: '#ef3b36' }}></i>
       </Link>
       <Link to="/chart" className="link black dim pl3 pr3">
         <i className="fas fa-chart-pie f3"></i>
