@@ -5,7 +5,10 @@ import * as yup from 'yup'
 
 const validateExpenseFormSchema = yup.object().shape({
   date: yup.string().required(),
-  category: yup.string().required(),
+  category: yup
+    .string()
+    .trim()
+    .required(),
   amount: yup
     .number()
     .required()
@@ -13,14 +16,37 @@ const validateExpenseFormSchema = yup.object().shape({
     .integer()
 })
 
+const categories = [
+  'select category',
+  'other',
+  'groceries',
+  'eating out',
+  'rent',
+  'shopping',
+  'movies'
+]
+
+const validate = values => {
+  let errors = {}
+
+  if (values.category === 'other' && !values.other) {
+    errors.other = 'other is a required field'
+  }
+
+  return errors
+}
+
 const AddExpense = () => {
   return (
     <Fragment>
       <Formik
+        validate={validate}
+        validateOnChange={false}
         validationSchema={validateExpenseFormSchema}
         initialValues={{
           date: moment().format('MMMM Do, YYYY'),
           category: '',
+          other: '',
           amount: 0
         }}
         render={({ handleSubmit, handleChange, values, errors }) => {
@@ -29,12 +55,16 @@ const AddExpense = () => {
               <section className="h5 flex justify-center items-center bg-red">
                 <div className="tc washed-yellow">
                   <p className="f1 mt2 mb2">{`$ ${values.amount}`}</p>
-                  <small>{values.category}</small>
+                  <small>
+                    {values.category === 'other'
+                      ? values.other
+                      : values.category}
+                  </small>
                 </div>
               </section>
               <form
                 onSubmit={handleSubmit}
-                className="pa4 black-80 flex flex-column justify-center items-center"
+                className="pa4 mb4 black-80 flex flex-column justify-center items-center"
               >
                 <div className="measure w-90">
                   <label className="f6 b db mb2">Date</label>
@@ -59,17 +89,48 @@ const AddExpense = () => {
                   <label htmlFor="category" className="f6 b db mb2">
                     Category
                   </label>
-                  <input
-                    onChange={handleChange}
-                    name="category"
+                  <select
                     className="input-reset ba b--black-20 pa2 mb2 db w-100"
-                    type="text"
-                  />
+                    name="category"
+                    onChange={handleChange}
+                  >
+                    {categories.map((category, idx) => {
+                      return (
+                        <option
+                          key={idx}
+                          value={category === 'select category' ? '' : category}
+                        >
+                          {category}
+                        </option>
+                      )
+                    })}
+                  </select>
                   {errors.category ? (
                     <small className="red">{errors.category}</small>
                   ) : null}
                 </div>
-                <button type="submit">Add expense</button>
+
+                {values.category === 'other' ? (
+                  <div className="measure w-90 mb2">
+                    <label className="f6 b db mb2">Other</label>
+                    <input
+                      onChange={handleChange}
+                      name="other"
+                      className="input-reset ba b--black-20 pa2 mb2 db w-100"
+                      type="text"
+                    />
+                    {errors.other ? (
+                      <small className="red">{errors.other}</small>
+                    ) : null}
+                  </div>
+                ) : null}
+
+                <button
+                  className="f6  dim ba ph3 pv2 mb2 dib near-black bg-white"
+                  type="submit"
+                >
+                  Save
+                </button>
               </form>
             </div>
           )
