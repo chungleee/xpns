@@ -1,20 +1,7 @@
 import React, { Fragment } from 'react'
 import { Formik } from 'formik'
 import moment from 'moment'
-import * as yup from 'yup'
-
-const validateExpenseFormSchema = yup.object().shape({
-  date: yup.string().required(),
-  category: yup
-    .string()
-    .trim()
-    .required(),
-  amount: yup
-    .number()
-    .required()
-    .positive()
-    .integer()
-})
+import { validateExpenseFormSchema, validate } from '../../utils/validation'
 
 const categories = [
   'select category',
@@ -26,14 +13,11 @@ const categories = [
   'movies'
 ]
 
-const validate = values => {
-  let errors = {}
-
-  if (values.category === 'other' && !values.other) {
-    errors.other = 'other is a required field'
-  }
-
-  return errors
+const initialValues = {
+  date: moment().format('MMMM Do, YYYY'),
+  category: '',
+  other: '',
+  amount: 0
 }
 
 const AddExpense = () => {
@@ -43,12 +27,7 @@ const AddExpense = () => {
         validate={validate}
         validateOnChange={false}
         validationSchema={validateExpenseFormSchema}
-        initialValues={{
-          date: moment().format('MMMM Do, YYYY'),
-          category: '',
-          other: '',
-          amount: 0
-        }}
+        initialValues={initialValues}
         render={({ handleSubmit, handleChange, values, errors }) => {
           return (
             <div>
