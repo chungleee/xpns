@@ -17,7 +17,7 @@ const initialValues = {
   date: moment().format('MMMM Do, YYYY'),
   category: '',
   other: '',
-  amount: 0
+  amount: null
 }
 
 const AddExpense = () => {
@@ -33,7 +33,9 @@ const AddExpense = () => {
             <div>
               <section className="h5 flex justify-center items-center bg-red">
                 <div className="tc washed-yellow">
-                  <p className="f1 mt2 mb2">{`$ ${values.amount}`}</p>
+                  <p className="f1 mt2 mb2">
+                    $ {values.amount === null ? '0' : values.amount}
+                  </p>
                   <small>
                     {values.category === 'other'
                       ? values.other
@@ -58,7 +60,7 @@ const AddExpense = () => {
                     name="amount"
                     className="input-reset ba b--black-20 pa2 mb2 db w-100"
                     value={values.amount}
-                    type="tel"
+                    type="number"
                   />
                   {errors.amount ? (
                     <small className="red">{errors.amount}</small>
