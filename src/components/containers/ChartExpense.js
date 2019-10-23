@@ -1,7 +1,14 @@
 import React from 'react'
+import PieChart from '../PieChart'
+import ChartLegend from '../ChartLegend'
 
 const ChartExpense = () => {
-  return <div>this is the chart pie comp</div>
+  return (
+    <div>
+      <PieChart />
+      <ChartLegend />
+    </div>
+  )
 }
 
 export default ChartExpense
