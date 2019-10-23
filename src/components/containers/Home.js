@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <Fragment>
       <Balance />
-      <ListGrid>
+      <ListGrid style={{ position: 'relative', top: '-45px' }}>
         <ExpenseList />
       </ListGrid>
     </Fragment>
