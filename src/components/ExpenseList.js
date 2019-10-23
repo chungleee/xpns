@@ -46,7 +46,7 @@ const ExpenseList = () => {
         return (
           <li
             key={idx}
-            className="bn shadow-4 br3 mt3 mb3 flex justify-between items-center h3 bg-white"
+            className="bn shadow-3 br3 mt3 mb3 flex justify-between items-center h3 bg-white"
           >
             <p className="ml3 ttc">{category}</p>
             <p className="mr3">${cost}</p>
