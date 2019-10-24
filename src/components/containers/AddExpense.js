@@ -3,6 +3,8 @@ import { Formik } from 'formik'
 import moment from 'moment'
 import { validateExpenseFormSchema, validate } from '../../utils/validation'
 import db from '../../database'
+import { logExpense } from '../../redux/actions'
+import { useDispatch } from 'react-redux'
 
 const categories = [
   'select category',
@@ -22,6 +24,8 @@ const initialValues = {
 }
 
 const AddExpense = () => {
+  const dispatch = useDispatch()
+
   return (
     <Fragment>
       <Formik
@@ -30,6 +34,9 @@ const AddExpense = () => {
         //   db.log(values)
         //   actions.setSubmitting(false)
         // }}
+        onSubmit={values => {
+          dispatch(logExpense(values))
+        }}
         validate={validate}
         validateOnChange={false}
         validationSchema={validateExpenseFormSchema}
