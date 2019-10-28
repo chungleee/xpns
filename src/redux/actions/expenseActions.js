@@ -20,7 +20,7 @@ export const addExpense = expenseObj => {
 
 export const getAllExpenses = () => {
   return async dispatch => {
-    const payload = await db.allDocs({ include_docs: true })
+    const payload = await db.allDocs({ include_docs: true, descending: true })
     dispatch({
       type: GET_ALL_EXPENSES,
       payload: payload.rows
