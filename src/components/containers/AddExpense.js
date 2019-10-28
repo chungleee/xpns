@@ -22,14 +22,18 @@ const initialValues = {
   amount: ''
 }
 
-const AddExpense = () => {
+const AddExpense = ({ history }) => {
   const dispatch = useDispatch()
   return (
     <Fragment>
       <Formik
         onSubmit={({ amount, category, date, other }) => {
+          // create new expense obj
           const newExpense = { amount, category, date, other }
+          // pass obj & dispatch action
           dispatch(addExpense(newExpense))
+          // redirect to home
+          history.push('/')
         }}
         validate={validate}
         validateOnChange={false}
