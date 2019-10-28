@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import expenseReducer from './expenseReducer'
 
 const rootReducer = combineReducers({
-  expense: expenseReducer
+  expenses: expenseReducer
 })
 
 export default rootReducer
