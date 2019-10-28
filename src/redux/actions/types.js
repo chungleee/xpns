@@ -1,1 +1,2 @@
-export const LOG_EXPENSE = 'LOG_EXPENSE'
+export const ADD_EXPENSE = 'ADD_EXPENSE'
+export const GET_ALL_EXPENSES = 'GET_ALL_EXPENSES'
