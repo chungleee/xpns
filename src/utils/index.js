@@ -1,19 +1,28 @@
 export const convertChartData = expenses => {
-  // TODO
-  // get labels aka categories minus duplicates
-  const tempLabels = expenses.map(expense => {
-    if (expense.category === 'other') {
-      return expense.other
-    } else {
-      return expense.category
+  const datasets = expenses.reduce((acc, current) => {
+    acc[current.category === 'other' ? current.other : current.category] = acc[
+      current.category
+    ] || {
+      category: current.category === 'other' ? current.other : current.category,
+      amount: 0
     }
-  })
-  const labels = new Set(tempLabels)
+    acc[
+      current.category === 'other' ? current.other : current.category
+    ].amount += current.amount
+    return acc
+  }, {})
 
-  // datasets -> data aka the sum of each category
+  return Object.values(datasets)
 
-  // return data obj
-  return {
-    labels
-  }
+  // const datasets = expenses.reduce((acc, current) => {
+  //   let item = acc[current.category]
+  //   if (item) {
+  //     item.amount += current.amount
+  //   } else {
+  //     acc[current.category] = current
+  //   }
+  //   return acc
+  // }, {})
+
+  // return Object.values(datasets)
 }
