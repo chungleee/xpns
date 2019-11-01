@@ -1,7 +1,8 @@
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
 
-const PieChart = () => {
+const PieChart = ({ data }) => {
+  console.log('props data', data)
   const chartProperties = {
     data: {
       labels: ['Red', 'Green', 'Yellow'],
@@ -16,6 +17,7 @@ const PieChart = () => {
     legend: { position: 'bottom' },
     size: { height: 250, width: 100 }
   }
+  // const size = { height: 250, width: 100}
 
   return (
     <div>
