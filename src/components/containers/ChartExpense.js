@@ -1,26 +1,24 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { convertChartData } from '../../utils'
 import { useSelector } from 'react-redux'
 
 import PieChart from '../PieChart'
 
 const ChartExpense = () => {
-  // const data = useSelector(({ expenses }) => {
-  //   return expenses.allExpenses.map(expense => {
-  //     return expense.doc
-  //   })
-  // })
-
-  const data = useSelector(({ expenses }) => {
+  const datasets = useSelector(({ expenses }) => {
     const dataToConvert = expenses.allExpenses.map(expense => {
       return expense.doc
     })
     return convertChartData(dataToConvert)
   })
 
-  return (
+  return datasets.length <= 0 ? (
+    <div className="flex justify-center">
+      <p>Data unavailable</p>
+    </div>
+  ) : (
     <div>
-      <PieChart data={data} />
+      <PieChart datasets={datasets} />
     </div>
   )
 }
