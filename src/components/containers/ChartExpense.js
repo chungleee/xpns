@@ -5,19 +5,22 @@ import { useSelector } from 'react-redux'
 import PieChart from '../PieChart'
 
 const ChartExpense = () => {
+  // const data = useSelector(({ expenses }) => {
+  //   return expenses.allExpenses.map(expense => {
+  //     return expense.doc
+  //   })
+  // })
+
   const data = useSelector(({ expenses }) => {
-    return expenses.allExpenses.map(expense => {
+    const dataToConvert = expenses.allExpenses.map(expense => {
       return expense.doc
     })
+    return convertChartData(dataToConvert)
   })
-
-  useEffect(() => {
-    convertChartData(data)
-  }, [])
 
   return (
     <div>
-      <PieChart />
+      <PieChart data={data} />
     </div>
   )
 }
