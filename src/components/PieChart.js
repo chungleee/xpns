@@ -1,23 +1,24 @@
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
+import { getData } from '../utils/'
 
-const PieChart = ({ data }) => {
-  console.log('props data', data)
+const PieChart = ({ datasets }) => {
+  const { labels, amounts, colors } = getData(datasets)
+
   const chartProperties = {
     data: {
-      labels: ['Red', 'Green', 'Yellow'],
+      labels,
       datasets: [
         {
-          data: [100, 500, 1325],
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+          data: amounts,
+          backgroundColor: colors,
+          hoverBackgroundColor: colors
         }
       ]
     },
     legend: { position: 'bottom' },
     size: { height: 250, width: 100 }
   }
-  // const size = { height: 250, width: 100}
 
   return (
     <div>
