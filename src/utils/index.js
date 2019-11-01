@@ -31,3 +31,9 @@ export const getData = expensesData => {
     colors
   }
 }
+
+export const getTotalBalance = datas => {
+  return datas.reduce((acc, current) => {
+    return acc + current.doc.amount
+  }, 0)
+}
