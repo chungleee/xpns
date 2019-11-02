@@ -1,4 +1,6 @@
 import randomColor from 'randomcolor'
+
+// takes expenses data obj and filter it into categories with their respective amounts summed up
 export const convertChartData = expenses => {
   const datasets = expenses.reduce((acc, current) => {
     acc[current.category === 'other' ? current.other : current.category] = acc[
@@ -16,6 +18,7 @@ export const convertChartData = expenses => {
   return Object.values(datasets)
 }
 
+// take data array and generate respective labels - amounts - colors for the chart
 export const getData = expensesData => {
   const labels = []
   const amounts = []
@@ -32,6 +35,7 @@ export const getData = expensesData => {
   }
 }
 
+// sum up expenses for total balance
 export const getTotalBalance = datas => {
   return datas.reduce((acc, current) => {
     return acc + current.doc.amount
