@@ -16,17 +16,14 @@ const PieChart = ({ datasets }) => {
         }
       ]
     },
-    legend: { position: 'bottom' },
-    size: { height: 250, width: 100 }
+    legend: { position: 'bottom' }
   }
 
   return (
-    <div>
+    <div className="pl2 pr2" style={{ height: '70vh', width: '100%' }}>
       <Doughnut
         data={chartProperties.data}
         legend={chartProperties.legend}
-        width={chartProperties.size.width}
-        height={chartProperties.size.height}
         options={{ maintainAspectRatio: false }}
       />
     </div>
