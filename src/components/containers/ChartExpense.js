@@ -17,7 +17,14 @@ const ChartExpense = () => {
       <p>Data unavailable</p>
     </div>
   ) : (
-    <div>
+    <div
+      style={{
+        height: '87vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
       <PieChart datasets={datasets} />
     </div>
   )
